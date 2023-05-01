@@ -1,0 +1,56 @@
+<!-- This is the transcriptor viewer! the API code is hosted at https://github.com/SrIzan10/api. It shouldn't be that difficult to host it, but good luck anyways! -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>discord audio transcriptor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+        .code {
+            padding: 30px;
+            outline: auto;
+            margin: 20px;
+            color: white;
+            background-color: #212427;
+        }
+        .text {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .info {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            color: white
+        }
+        body {
+            background-color: #35393e;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script type="module">
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        if (params.msgid === null) window.location = 'https://cdn.discordapp.com/attachments/1019680017464164425/1102518008536125510/megamind.png'
+        const request = await axios.get(`https://api.srizan.dev/transcriptor/get?msgid=${params.msgid}`).then(res => res.data).catch(() => {
+            document.getElementsByClassName('info')[0].innerHTML = "something went wrong!"
+            document.getElementsByClassName('text')[0].innerHTML = "try to wait a minute and try again!"
+            return;
+        })
+        if (!request.text) {
+            document.getElementsByClassName('info')[0].innerHTML = "something went wrong!"
+            document.getElementsByClassName('text')[0].innerHTML = "msgid not found in database!"
+        } else {
+            document.getElementsByClassName('info')[0].innerHTML = `Transcripted voice message by ${request.username} in guild ${request.guild}`
+            document.getElementsByClassName('text')[0].innerHTML = request.text
+        }
+    </script>
+</head>
+<body>
+    <h3 class="info"></h3>
+    <div class="code">
+        <code class="text">loading...</code>
+    </div>
+</body>
+</html>

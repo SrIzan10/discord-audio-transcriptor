@@ -1,0 +1,31 @@
+{
+  "name": "discord-audio-transcriptor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "tsc && node ./dist/index.js"
+  },
+  "keywords": [
+    "typescript",
+    "sern",
+    "discord.js"
+  ],
+  "type": "module",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@sern/handler": "^2.5.0",
+    "axios": "^1.4.0",
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.0.3",
+    "execa": "^7.1.1",
+    "get-audio-duration": "^3.1.1",
+    "whisper.cpp": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.25",
+    "typescript": "^4.9"
+  }
+}
