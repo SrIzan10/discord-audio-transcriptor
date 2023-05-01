@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN apk add make g++ ffmpeg bash sdl2-dev
+RUN apk add make g++ ffmpeg bash sdl2-dev git
 RUN bash ./util/setup.sh
 
 RUN tsc --build
