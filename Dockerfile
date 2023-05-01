@@ -14,4 +14,4 @@ RUN npm install -g typescript
 
 RUN tsc --build
 
-RUN node dist/index.js
+CMD node dist/index.js
